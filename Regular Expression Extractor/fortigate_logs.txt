@@ -1,4 +1,0 @@
-# Creating Extractor for fortigate logs in graylog
-
-# Step 1: Create a JSON extractor ( JSON extractor will create a full_log field) 
-# Step 2: For the full_log field create a "Regular Expression" extractor for every field.
