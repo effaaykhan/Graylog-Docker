@@ -1,0 +1,11 @@
+rule "Enrich with GeoIP Data"
+when
+  has_field("src_ip") // Change this field according to your logs
+then
+  let geo = lookup("geo-ip", to_string($message.src_ip));
+  set_field("src_geo_country", geo["country"].iso_code);
+  set_field("src_geo_city", geo["city"].name);
+  let lat = to_string(geo["location"].lat);
+  let lon = to_string(geo["location"].lon);
+  set_field("src_geo_coordinates", lat + "," + lon);
+end
