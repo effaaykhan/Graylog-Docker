@@ -1,0 +1,19 @@
+rule "Suricata logs Normalization"
+when
+    has_field("log_type")
+then
+    set_field("src_ip", to_string($message.data_src_ip));
+    remove_field("data_src_ip");
+    
+    set_field("src_port", to_string($message.data_src_port));
+    remove_field("data_src_port");
+    
+    set_field("dst_ip", to_string($message.data_dest_ip));
+    remove_field("data_dst_port");
+    
+    set_field("dst_port", to_string($message.data_dest_port));
+    remove_field("data_dest_port");
+    
+    set_field("timestamp", to_string($message.data_timestamp));
+    remove_field("data_timestamp");
+end
