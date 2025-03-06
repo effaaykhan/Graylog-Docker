@@ -69,3 +69,20 @@ docker --version
 
 ## Extractors
 - [Regular Expression](https://github.com/effaaykhan/Graylog-Docker/blob/main/Extractors/Regex%20Extractor) extractor for fortigate logs
+
+## Geo-Location 
+- Step 1: Downlaod .mmdb databases from [MaxMind](https://www.maxmind.com/en/accounts/1130460/geoip/downloads).
+  - GeoLite2-ASN.mmdb
+    ```bash
+    wget "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=YOUR_LICENSE_KEY&suffix=tar.gz" -O GeoLite2-ASN.tar.gz
+    ```
+  - GeoLite2-City.mmdb
+    ```bash
+    https://download.maxmind.com/geoip/databases/GeoLite2-City/download?suffix=tar.gz
+    ```
+- Step 2: Configure and Enable the geo-location processor under System>Configuration>Plugins and put the correct path of the databases
+- Step 3: Create a Lookup Table
+    - Data Adapter: Goto System>Lookup Tables>Data Adapters>Create Data Adapter> Geo IP MaxMind and fill the details. Select Type: City Database
+    - Lookup Table: Now create lookup table and add the adapter
+ 
+- Step 4: Create a new [Pipeline Rule](https://github.com/effaaykhan/Graylog-Docker/blob/main/Pipelines/geo-location)
