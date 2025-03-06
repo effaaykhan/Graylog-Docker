@@ -1,5 +1,5 @@
 # Graylog-Docker
-This repository contains the installation guide of graylog on docker.
+Graylog is an open-source log management platform that allows users to collect, index, and analyze log data from various sources. It is designed to help organizations gain insights from their log data, troubleshoot issues, and ensure the security and compliance of their systems
 
 ## Install Docker.io on your system
 ```bash
