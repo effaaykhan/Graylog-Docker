@@ -1,0 +1,17 @@
+rule "Add is_internal_ip Field"
+when
+  has_field("src_ip") OR has_field("dst_ip") // Check if either src_ip or dst_ip exists
+then
+  let is_internal_src = has_field("src_ip") &&
+      (cidr_match("10.0.0.0/8", to_ip($message.src_ip)) OR
+       cidr_match("172.16.0.0/12", to_ip($message.src_ip)) OR
+       cidr_match("192.168.0.0/16", to_ip($message.src_ip)));
+
+  let is_internal_dst = has_field("dst_ip") &&
+      (cidr_match("10.0.0.0/8", to_ip($message.dst_ip)) OR
+       cidr_match("172.16.0.0/12", to_ip($message.dst_ip)) OR
+       cidr_match("192.168.0.0/16", to_ip($message.dst_ip)));
+
+  // Set the is_internal_ip field if either source or destination IP is internal
+  set_field("is_internal_ip", is_internal_src OR is_internal_dst);
+end
