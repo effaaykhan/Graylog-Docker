@@ -90,7 +90,7 @@ docker --version
 
 
 # Forward LLM enriched logs to graylog.
-- Step 1: Create a python file in ```/var/ossec/```:
+- Step 1: Create a python file in ```/var/ossec/``` on wazuh-server:
   ```
   nano /var/ossec/yara_to_graylog.py
   ```
