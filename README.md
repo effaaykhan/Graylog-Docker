@@ -78,7 +78,8 @@ docker --version
     ```
   - GeoLite2-City.mmdb
     ```bash
-    https://download.maxmind.com/geoip/databases/GeoLite2-City/download?suffix=tar.gz
+    wget "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=YOUR_LICENSE_KEY&suffix=tar.gz" -O GeoLite2-City.tar.gz
+
     ```
 - Step 2: Configure and Enable the geo-location processor under System>Configuration>Plugins and put the correct path of the databases
 - Step 3: Create a Lookup Table
